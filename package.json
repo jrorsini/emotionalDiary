@@ -1,0 +1,11 @@
+{
+	"name": "emotionalDiary",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/jrorsini/emotionalDiary.git",
+	"author": "Jean-Roger <jeanroger.orsini@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "live-server"
+	}
+}
