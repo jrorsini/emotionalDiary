@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
+const keys = require('keys');
 mongoose.connect(
-	'mongodb://jrpan.jp/test',
+	keys.mongoURI,
 	{ useNewUrlParser: true }
 );
