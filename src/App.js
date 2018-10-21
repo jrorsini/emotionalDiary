@@ -22,7 +22,7 @@ class App extends Component {
 			<div>
 				<button onClick={this.onClickHandler}>count up</button>
 				<p>Hello World!</p>
-				<b>count: {this.state.count}</b>
+				<b>count- {this.state.count}</b>
 			</div>
 		);
 	}
