@@ -3,7 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const dev = process.env.NODE_ENV === 'dev';
 
 const config = {
-	entry: './src/App.js',
+	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname),
 		filename: 'bundle.js'
@@ -14,7 +14,11 @@ const config = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				options: {
+					cacheDirectory: true,
+					plugins: ['react-hot-loader/babel']
+				}
 			},
 			{
 				test: /\.css$/,
@@ -22,12 +26,11 @@ const config = {
 			}
 		]
 	},
+	plugins: [],
 	devServer: {
-		proxy: [
-			{
-				target: 'http://localhost:5000'
-			}
-		]
+		historyApiFallback: true,
+		contentBase: path.resolve(__dirname, 'dist'),
+		port: 3000
 	}
 };
 

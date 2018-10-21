@@ -6,7 +6,7 @@
 	"author": "Jean-Roger <jeanroger.orsini@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "live-server"
+		"dev": "webpack-dev-server --hot"
 	},
 	"dependencies": {
 		"mongoose": "^5.3.4",
