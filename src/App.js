@@ -12,17 +12,17 @@ class App extends Component {
 	}
 
 	onClickHandler() {
-		this.setState(prevState => {
-			console.log(prevState);
-		});
+		this.setState(({ count }) => ({
+			count: count + 1
+		}));
 	}
 
 	render() {
 		return (
 			<div>
-				<p> Hello World!</p>
-				<b>count: {this.state.count}</b>
 				<button onClick={this.onClickHandler}>count up</button>
+				<p>Hello World!</p>
+				<b>count: {this.state.count}</b>
 			</div>
 		);
 	}
