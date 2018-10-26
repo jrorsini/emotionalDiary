@@ -18,13 +18,7 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div>
-				<button onClick={this.onClickHandler}>count up</button>
-				<p>Hello World!</p>
-				<b>count- {this.state.count}</b>
-			</div>
-		);
+		return <div>emotional intelligence</div>;
 	}
 }
 
