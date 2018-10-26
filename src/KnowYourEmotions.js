@@ -1,29 +1,31 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
+import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import { hot } from 'react-hot-loader';
+import 'react-datepicker/dist/react-datepicker.css';
 
-export default hot(module)(() => (
-	<div>
-		<p>Know your emotions</p>
-		<form action="">
-			<label>
-				Where did it come from? What's going on in your head in the moment
-				before the emotion appears? What thought triggers this feeling?
-			</label>
-			<input type="text" />
+class KnowYourEmotions extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-			<label>
-				Where and when did they start? Every emotions has its place in your body
-			</label>
-			<DatePicker
-				selected={}
-				onChange={}
-				showTimeSelect
-				timeFormat="HH:mm"
-				timeIntervals={15}
-				dateFormat="LLL"
-				timeCaption="time"
-			/>
-		</form>
-	</div>
-));
+	handleChange(date) {
+		console.log(date);
+	}
+	render() {
+		return (
+			<div>
+				test
+				<DatePicker
+					onChange={this.handleChange}
+					showTimeSelect
+					timeFormat="HH:mm"
+					timeIntervals={15}
+					dateFormat="LLL"
+					timeCaption="time"
+				/>
+			</div>
+		);
+	}
+}
+
+export default hot(module)(KnowYourEmotions);
