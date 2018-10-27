@@ -45,7 +45,7 @@ app.post('/update_emotions/', ({ body }, res) =>
 );
 
 app.get('/emotions/', (req, res) => {
-	User.findOne({ email: 'test@test.com' }).then(user => res.send(user));
+	Users.findOne({ email: 'test@test.com' }).then(user => res.send(user));
 });
 
 const PORT = process.env.PORT || 5000;
