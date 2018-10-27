@@ -40,7 +40,8 @@ class KnowYourEmotions extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: moment()
+			startDate: moment(),
+			emotions: null
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
@@ -48,7 +49,7 @@ class KnowYourEmotions extends Component {
 
 	componentDidMount() {
 		axios.get('/emotions/').then(res => {
-			console.log(res);
+			console.log(res.data.emotions);
 		});
 	}
 
