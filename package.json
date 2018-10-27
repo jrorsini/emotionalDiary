@@ -6,9 +6,10 @@
 	"author": "Jean-Roger <jeanroger.orsini@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "webpack-dev-server --hot"
+		"dev": "concurrently  \"nodemon index.js\" \"webpack-dev-server --hot\" "
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.5",
 		"babel-plugin-transform-object-rest-spread": "^6.26.0",

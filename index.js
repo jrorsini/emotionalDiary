@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 const keys = require('./keys');
 const app = express();
 const bodyParser = require('body-parser');
@@ -11,10 +12,6 @@ app.use(
 	})
 );
 
-app.post('/update_emotions/', (req, res) => {
-	console.log(req.body);
-});
-
 mongoose
 	.connect(
 		keys.mongoURI,
@@ -25,12 +22,30 @@ mongoose
 	})
 	.catch(err => console.log(err));
 
-const Emotion = mongoose.model('Emotion', {
+const emotionSchema = new Schema({
 	source: String,
 	date: Date,
 	location: String,
 	kind: String,
 	intensity: String
+});
+
+const User = mongoose.model('users', {
+	email: String,
+	emotions: [emotionSchema]
+});
+
+app.post('/update_emotions/', ({ body }, res) =>
+	User.findOneAndUpdate({ email: 'test@test.com' }, { emotions: body }).then(
+		emotion => {
+			console.log(emotion);
+			res.send('Your felt emotion has been saved.');
+		}
+	)
+);
+
+app.get('/emotions/', (req, res) => {
+	User.findOne({ email: 'test@test.com' }, {});
 });
 
 const PORT = process.env.PORT || 5000;

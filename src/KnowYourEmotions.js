@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader';
 import styled from 'styled-components';
 import 'react-datepicker/dist/react-datepicker.css';
 import './HumanBodyStyle.css';
+import axios from 'axios';
 
 const Form = styled.form`
 	width: 46%;
@@ -49,10 +50,20 @@ class KnowYourEmotions extends Component {
 
 	submitHandler(e) {
 		e.preventDefault();
+		const emotion = {
+			source: null,
+			date: null,
+			location: null,
+			kind: null,
+			intensity: null
+		};
 		for (let i = 0; i < 5; i++) {
-			const el = e.target.elements[i];
-			console.log(el.value);
+			const input = e.target.elements[i];
+			emotion[input.name] = input.value;
 		}
+
+		axios.post('/update_emotions/', emotion).then(res => console.log(res));
+		console.log(emotion);
 	}
 
 	handleChange(date) {
