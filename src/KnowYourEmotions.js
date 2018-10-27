@@ -46,7 +46,11 @@ class KnowYourEmotions extends Component {
 		this.submitHandler = this.submitHandler.bind(this);
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		axios.get('/emotions/').then(res => {
+			console.log(res);
+		});
+	}
 
 	submitHandler(e) {
 		e.preventDefault();
@@ -74,6 +78,7 @@ class KnowYourEmotions extends Component {
 			startDate: date
 		});
 	}
+
 	render() {
 		return (
 			<div>
