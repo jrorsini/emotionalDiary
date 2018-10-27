@@ -71,7 +71,7 @@ class KnowYourEmotions extends Component {
 						before the emotion appears? What thought triggers this feeling?
 					</Label>
 					<br />
-					<TextArea name="origin" />
+					<TextArea name="source" />
 					<br />
 					<Label>When did they start?</Label>
 					<DatePicker

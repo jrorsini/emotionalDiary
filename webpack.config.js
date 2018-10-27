@@ -28,6 +28,12 @@ const config = {
 	},
 	plugins: [],
 	devServer: {
+		proxy: [
+			{
+				context: ['/update_emotions/**'],
+				target: 'http://localhost:5000'
+			}
+		],
 		historyApiFallback: true,
 		contentBase: path.resolve(__dirname, 'dist'),
 		port: 3000
