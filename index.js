@@ -30,13 +30,13 @@ const emotionSchema = new Schema({
 	intensity: String
 });
 
-const User = mongoose.model('users', {
+const Users = mongoose.model('users', {
 	email: String,
 	emotions: [emotionSchema]
 });
 
 app.post('/update_emotions/', ({ body }, res) =>
-	User.findOneAndUpdate({ email: 'test@test.com' }, { emotions: body }).then(
+	Users.findOneAndUpdate({ email: 'test@test.com' }, { emotions: body }).then(
 		emotion => {
 			console.log(emotion);
 			res.send('Your felt emotion has been saved.');

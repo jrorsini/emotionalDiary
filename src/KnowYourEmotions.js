@@ -62,7 +62,9 @@ class KnowYourEmotions extends Component {
 			emotion[input.name] = input.value;
 		}
 
-		axios.post('/update_emotions/', emotion).then(res => console.log(res));
+		axios
+			.post('/update_emotions/', emotion)
+			.then(({ data }) => console.log(data));
 		console.log(emotion);
 	}
 

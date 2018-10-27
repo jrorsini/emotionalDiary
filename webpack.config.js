@@ -30,7 +30,7 @@ const config = {
 	devServer: {
 		proxy: [
 			{
-				context: ['/update_emotions/**'],
+				context: ['/update_emotions/**', '/emotions/**'],
 				target: 'http://localhost:5000'
 			}
 		],
