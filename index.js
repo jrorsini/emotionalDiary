@@ -50,16 +50,3 @@ app.get('/emotions/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
-
-// const emotion = new Emotion({
-// 	source: '',
-// 	date: '',
-// 	location: '',
-// 	kind: '',
-// 	intensity: ''
-// });
-
-// emotion.save().then(arg => {
-// 	console.log(arg);
-// 	console.log('saved');
-// });
