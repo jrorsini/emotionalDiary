@@ -72,18 +72,17 @@ class KnowYourEmotions extends Component {
 		}
 
 		this.setState(prevState => {
-			const emotionsArray = prevState.emotions.concat([emotion]);
-			axios.post('/update_emotions/', emotionsArray).then();
-			return { ...prevState, emotions: emotionsArray };
+			const emotions = prevState.emotions.concat([emotion]);
+			axios.post('/update_emotions/', emotions).then();
+			return { ...prevState, emotions };
 		});
-
-		console.log(emotion);
 	}
 
 	removeHandler(date) {
 		this.setState(prevState => {
-			console.log(prevState.emotions.filter(e => e.date !== date));
-			return prevState;
+			const emotions = prevState.emotions.filter(e => e.date !== date);
+			axios.post('/update_emotions/', emotions).then();
+			return { ...prevState, emotions };
 		});
 	}
 
