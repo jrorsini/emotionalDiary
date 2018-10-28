@@ -44,6 +44,7 @@ class KnowYourEmotions extends Component {
 			emotions: []
 		};
 		this.handleChange = this.handleChange.bind(this);
+		this.removeHandler = this.removeHandler.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
 	}
 
@@ -77,6 +78,13 @@ class KnowYourEmotions extends Component {
 		});
 
 		console.log(emotion);
+	}
+
+	removeHandler(date) {
+		this.setState(prevState => {
+			console.log(prevState.emotions.filter(e => e.date !== date));
+			return prevState;
+		});
 	}
 
 	handleChange(date) {
@@ -137,13 +145,16 @@ class KnowYourEmotions extends Component {
 								<span>
 									trigger: <b>{e.source}</b>
 								</span>
+								<br />
 								<span>
 									located in <b>{e.location}</b>, course - <b>{e.kind}</b>
 								</span>
 								<span>
 									Intensity - <b>{e.intensity}</b>
 								</span>
-								<button>remove</button>
+								<button onClick={() => this.removeHandler(e.date)}>
+									remove
+								</button>
 								<button>edit</button>
 							</li>
 						);
