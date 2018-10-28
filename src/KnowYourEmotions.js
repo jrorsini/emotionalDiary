@@ -70,13 +70,12 @@ class KnowYourEmotions extends Component {
 			emotion[input.name] = input.value;
 		}
 
-		this.setState(prevState => ({
-			...prevState,
-			emotions: prevState.emotions.concat([emotion])
-		}));
-		axios
-			.post('/update_emotions/', emotion)
-			.then(({ data }) => console.log(data));
+		this.setState(prevState => {
+			const emotionsArray = prevState.emotions.concat([emotion]);
+			axios.post('/update_emotions/', emotionsArray).then();
+			return { ...prevState, emotions: emotionsArray };
+		});
+
 		console.log(emotion);
 	}
 
