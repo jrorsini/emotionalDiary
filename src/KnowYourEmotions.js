@@ -132,7 +132,12 @@ class KnowYourEmotions extends Component {
 				</Form>
 				<List className="emotionLogList">
 					{this.state.emotions.map((e, i) => {
-						return <li key={i}>{e.source}</li>;
+						return (
+							<li key={i}>
+								{e.source} <button>remove</button>
+								<button>edit</button>
+							</li>
+						);
 					})}
 				</List>
 			</div>
