@@ -133,7 +133,17 @@ class KnowYourEmotions extends Component {
 					{this.state.emotions.map((e, i) => {
 						return (
 							<li key={i}>
-								{e.source} <button>remove</button>
+								<b>{e.date}</b> - <br />
+								<span>
+									trigger: <b>{e.source}</b>
+								</span>
+								<span>
+									located in <b>{e.location}</b>, course - <b>{e.kind}</b>
+								</span>
+								<span>
+									Intensity - <b>{e.intensity}</b>
+								</span>
+								<button>remove</button>
 								<button>edit</button>
 							</li>
 						);
