@@ -41,15 +41,18 @@ class KnowYourEmotions extends Component {
 		super(props);
 		this.state = {
 			startDate: moment(),
-			emotions: null
+			emotions: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
 	}
 
 	componentDidMount() {
-		axios.get('/emotions/').then(res => {
-			console.log(res.data.emotions);
+		axios.get('/emotions/').then(({ data }) => {
+			this.setState(prevState => ({
+				...prevState,
+				emotions: data.emotions
+			}));
 		});
 	}
 
@@ -125,7 +128,7 @@ class KnowYourEmotions extends Component {
 				</Form>
 				<List className="emotionLogList">
 					{this.state.emotions.map((e, i) => {
-						return <li>{source}</li>;
+						return <li key={i}>{e.source}</li>;
 					})}
 				</List>
 			</div>
