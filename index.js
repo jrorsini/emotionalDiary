@@ -17,23 +17,10 @@ mongoose
 		keys.mongoURI,
 		{ useNewUrlParser: true }
 	)
-	.then(() => {
-		console.log('connected');
-	})
+	.then(() => console.log('connected'))
 	.catch(err => console.log(err));
 
-const emotionSchema = new Schema({
-	source: String,
-	date: Date,
-	location: String,
-	kind: String,
-	intensity: String
-});
-
-const Users = mongoose.model('users', {
-	email: String,
-	emotions: [emotionSchema]
-});
+const Users = mongoose.model('users', { email: String, emotions: Array });
 
 app.post('/update_emotions/', ({ body }, res) =>
 	Users.findOneAndUpdate({ email: 'test@test.com' }, { emotions: body }).then(

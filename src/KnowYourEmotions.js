@@ -124,9 +124,9 @@ class KnowYourEmotions extends Component {
 					/>
 				</Form>
 				<List className="emotionLogList">
-					<li>emotion1</li>
-					<li>emotion2</li>
-					<li>emotion3</li>
+					{this.state.emotions.map((e, i) => {
+						return <li>{source}</li>;
+					})}
 				</List>
 			</div>
 		);
