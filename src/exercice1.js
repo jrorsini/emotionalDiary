@@ -17,9 +17,9 @@ class Exercice1 extends Component {
 				affect: 'Kind of affect',
 				emotion: 'Feeling right now'
 			},
-			activation: '',
-			affect: '',
-			emotion: '',
+			activation: null,
+			affect: null,
+			emotion: null,
 			trigger: '',
 			entries: [],
 			triggers: [],
@@ -32,8 +32,9 @@ class Exercice1 extends Component {
 	handleActivationChange(activation) {
 		this.setState(prevState => ({
 			...prevState,
-			activation: activation.value
+			activation
 		}));
+		console.log(this.state);
 	}
 
 	handleAffectChange(affect) {
@@ -88,14 +89,12 @@ class Exercice1 extends Component {
 			<div>
 				Select form goes here
 				<Select
-					placeholder="Activation level"
-					onChange={this.handleActivationChange}
 					value={activation}
+					onChange={this.handleActivationChange}
 					options={setOptions('high normal low')}
 				/>
 				{activation && (
 					<Select
-						placeholder="Kind of affect"
 						value={affect}
 						options={
 							activation === 'normal'
