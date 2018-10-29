@@ -27,18 +27,16 @@ class Exercice1 extends Component {
 		};
 		this.setEmotionOptions = this.setEmotionOptions.bind(this);
 		this.handleActivationChange = this.handleActivationChange.bind(this);
+		this.handleAffectChange = this.handleAffectChange.bind(this);
+		this.setEmotionOptions = this.setEmotionOptions.bind(this);
 	}
 
 	handleActivationChange(activation) {
-		this.setState(prevState => ({
-			...prevState,
-			activation
-		}));
-		console.log(this.state);
+		this.setState({ activation });
 	}
 
 	handleAffectChange(affect) {
-		this.setState({ affect: affect.value });
+		this.setState({ affect });
 	}
 
 	setEmotionOptions(activation, affect) {
@@ -90,40 +88,32 @@ class Exercice1 extends Component {
 				Select form goes here
 				<Select
 					value={activation}
+					placeholder="Activation level"
 					onChange={this.handleActivationChange}
 					options={setOptions('high normal low')}
 				/>
-				{activation && (
+				{activation !== null && (
 					<Select
+						name="AffectType"
+						placeholder="Kind of affect"
 						value={affect}
+						onChange={this.handleAffectChange}
 						options={
-							activation === 'normal'
+							activation.value === 'normal'
 								? setOptions('positive negative')
 								: setOptions('positive neutral negative')
 						}
 					/>
 				)}
-				{/* <Select
-					name="AffectType"
-					placeholder="Kind of affect"
-					value={affect}
-					options={
-						activation &&
-						(activation.value === 'normal'
-							? setOptions('positive negative')
-							: setOptions('positive neutral negative'))
-					}
-				/>
-				<Select
-					name="emotion"
-					placeholder="Feeling right now"
-					value={emotion}
-					options={
-						activation &&
-						affect &&
-						this.setEmotionOptions(activation.value, affect.value)
-					}
-				/> */}
+				{activation &&
+					affect && (
+						<Select
+							name="emotion"
+							placeholder="Feeling right now"
+							value={emotion}
+							options={this.setEmotionOptions(activation.value, affect.value)}
+						/>
+					)}
 			</div>
 		);
 	}
