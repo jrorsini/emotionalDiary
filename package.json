@@ -6,7 +6,7 @@
 	"author": "Jean-Roger <jeanroger.orsini@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "concurrently  \"nodemon index.js\" \"webpack-dev-server --hot\" "
+		"dev": "concurrently  \"nodemon index.js\" \"webpack-dev-server --hot\"  \"sudo mongod\""
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
