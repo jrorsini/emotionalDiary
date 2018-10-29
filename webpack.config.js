@@ -5,7 +5,7 @@ const dev = process.env.NODE_ENV === 'dev';
 const config = {
 	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
 	mode: 'development',

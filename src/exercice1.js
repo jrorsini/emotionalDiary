@@ -15,26 +15,6 @@ class Exercice1 extends Component {
 			errorMessage: null
 		};
 	}
-
-	/**
-		Set up data from Localstorage if there is any.
-	 */
-	componentDidMount() {
-		const entries = JSON.parse(localStorage.getItem('entries'));
-		if (entries) {
-			this.setState(prevState => ({
-				entries: entries
-			}));
-		}
-	}
-
-	/**
-		Update localStorage data when component updates.
-	 */
-	componentDidUpdate() {
-		localStorage.setItem('entries', JSON.stringify(this.state.entries));
-	}
-
 	/**
 		Handle input saving and updates UI DOM.
 		Also checks wether all informations and filled out

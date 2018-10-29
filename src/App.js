@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import React from 'react';
+import KnowYourEmotions from './KnowYourEmotions';
+import Exercice1 from './exercice1';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			count: 0
-		};
+const Index = () => <div>Emotional intelligence practice guide</div>;
 
-		this.onClickHandler = this.onClickHandler.bind(this);
-	}
+export default () => (
+	<Router>
+		<div>
+			<nav>
+				<ul>
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+					<li>
+						<Link to="/know_your_emotions/">Know your emotions</Link>
+					</li>
+					<li>
+						<Link to="/exercice1/">Exercice 1</Link>
+					</li>
+				</ul>
+			</nav>
 
-	onClickHandler() {
-		this.setState(({ count }) => ({
-			count: count + 1
-		}));
-	}
-
-	render() {
-		return <div>emotional intelligence</div>;
-	}
-}
-
-export default hot(module)(App);
+			<Route path="/" exact component={Index} />
+			<Route path="/know_your_emotions/" component={KnowYourEmotions} />
+			<Route path="/exercice1/" component={Exercice1} />
+		</div>
+	</Router>
+);
