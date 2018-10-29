@@ -35,6 +35,23 @@ class AddEntry extends Component {
 	}
 
 	setEmotionOptions(activation, affect) {
+		const emotionSet1 = 'excited surprised active rapt';
+		const emotionSet2 = 'astonished willing agitated';
+		const emotionSet3 = 'enthusiast cheerful excited euphoric animated peppy';
+		const emotionSet4 = 'amused proud sensitive';
+		const emotionSet5 = 'happy delighted glad joyful hearty satisfied';
+		const emotionSet6 = 'nostalgic modest cheerful';
+		const emotionSet7 = 'relaxed happy rested calm cheerful easy';
+		const emotionSet8 = 'shy serious sleepy';
+		const emotionSet9 = 'calm quiet inactive lazy passive';
+		const emotionSet10 = 'dazed bored listless';
+		const emotionSet11 = 'numb tired lethargic heavy distressed';
+		const emotionSet12 = 'ashamed disappointed';
+		const emotionSet13 = 'unhappy depressed sad sour dreary downcast';
+		const emotionSet14 = 'jealous disgusted confused';
+		const emotionSet15 = 'stressed angry frightened upset jittery conserned';
+		const emotionSet16 = 'contradictory alarmed furious';
+
 		const high_neutral = 'excited surprised rapt active';
 		const normal_neutral = 'happy delighted glad joyful hearty satisfied';
 		const normal_positive = 'happy delighted glad joyful hearty satisfied';
