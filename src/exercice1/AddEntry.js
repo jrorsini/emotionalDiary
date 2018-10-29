@@ -52,13 +52,17 @@ class AddEntry extends Component {
 		const emotionSet15 = 'stressed angry frightened upset jittery conserned';
 		const emotionSet16 = 'contradictory alarmed furious';
 
-		const high_neutral = 'excited surprised rapt active';
-		const normal_neutral = 'happy delighted glad joyful hearty satisfied';
-		const normal_positive = 'happy delighted glad joyful hearty satisfied';
-		const high_positive =
-			'enthusiastic cheerful excited euphoric animated peppy';
 		const high_negative =
-			'jealous disgusted confused stressed angry frightened upset jittery concerned contradictory alarmed furious';
+			emotionSet14 + ' ' + emotionSet15 + ' ' + emotionSet16;
+		const high_neutral = emotionSet16 + ' ' + emotionSet1 + ' ' + emotionSet2;
+		const high_positive = emotionSet2 + ' ' + emotionSet3 + ' ' + emotionSet4;
+
+		const normal_neutral = '';
+		const normal_positive = '';
+
+		const low_negative = emotionSet10 + ' ' + emotionSet11 + ' ' + emotionSet12;
+		const low_neutral = emotionSet8 + ' ' + emotionSet9 + ' ' + emotionSet10;
+		const low_positive = emotionSet6 + ' ' + emotionSet7 + ' ' + emotionSet8;
 
 		switch (activation) {
 			case 'high':
@@ -82,11 +86,11 @@ class AddEntry extends Component {
 			case 'low':
 				switch (affect) {
 					case 'positive':
-						break;
+						return setOptions(low_positive);
 					case 'neutral':
-						break;
+						return setOptions(low_neutral);
 					case 'negative':
-						break;
+						return setOptions(low_negative);
 				}
 				break;
 		}
