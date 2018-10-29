@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import AddEntry from './exercice1/AddEntry';
+import Select from 'react-select';
+
+const options = [
+	{ value: 'chocolate', label: 'Chocolate' },
+	{ value: 'strawberry', label: 'Strawberry' },
+	{ value: 'vanilla', label: 'Vanilla' }
+];
 
 class Exercice1 extends Component {
 	constructor(props) {
@@ -15,40 +21,12 @@ class Exercice1 extends Component {
 			errorMessage: null
 		};
 	}
-	/**
-		Handle input saving and updates UI DOM.
-		Also checks wether all informations and filled out
-	 */
-	handleAddEntry(e) {
-		e.preventDefault();
-		const emotion = e.target.elements.emotion.value;
-		const trigger = e.target.elements.trigger.value;
-
-		!emotion &&
-			this.setState(() => ({
-				errorMessage: "Your entry doesn't have any emotions"
-			}));
-		!trigger &&
-			this.setState(() => ({
-				errorMessage: "Your entry doesn't have any trigger"
-			}));
-
-		this.setState(({ entries, triggers }) => ({
-			entries: entries.concat({ emotion, trigger }),
-			triggers:
-				triggers.indexOf(trigger) === -1 ? triggers.concat(trigger) : triggers
-		}));
-	}
 
 	render() {
 		return (
 			<div>
-				<AddEntry
-					handleAddEntry={this.handleAddEntry}
-					errorMessage={this.state.errorMessage}
-					triggers={this.state.triggers}
-					inputs={this.state.inputs}
-				/>
+				Select form goes here
+				<Select options={options} />
 			</div>
 		);
 	}
