@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { hot } from 'react-hot-loader';
 
 const setOptions = optionString =>
 	optionString.split(' ').map(option => ({
@@ -7,38 +8,32 @@ const setOptions = optionString =>
 		label: option.charAt(0).toUpperCase() + option.slice(1)
 	}));
 
-const normal_neutral = [];
-
 class AddEntry extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activation: '',
-			affect: '',
-			emotion: '',
-			trigger: ''
+			activation: null,
+			affect: null,
+			emotion: null
 		};
+		this.handleActivationChange = this.handleActivationChange.bind(this);
+		this.handleEmotionChange = this.handleEmotionChange.bind(this);
+		this.handleAffectChange = this.handleAffectChange.bind(this);
+		this.setEmotionOptions = this.setEmotionOptions.bind(this);
 	}
 
 	handleActivationChange(activation) {
-		activation
-			? this.setState({ activation })
-			: this.setState({
-					activation,
-					affect: '',
-					emotion: ''
-			  });
+		this.setState({ activation });
 	}
-	handleAffectChange(affect) {
-		this.setState({ affect, emotion: '' });
-	}
+
 	handleEmotionChange(emotion) {
 		this.setState({ emotion });
 	}
 
-	/**
-	Set emotion's options according to the two previous inputs.
- */
+	handleAffectChange(affect) {
+		this.setState({ affect });
+	}
+
 	setEmotionOptions(activation, affect) {
 		const high_neutral = 'excited surprised rapt active';
 		const normal_neutral = 'happy delighted glad joyful hearty satisfied';
@@ -81,69 +76,39 @@ class AddEntry extends Component {
 	}
 
 	render() {
-		const { activation, affect, emotion, trigger } = this.state;
+		const { activation, affect, emotion } = this.state;
 
 		return (
-			<div className="container">
-				{this.props.errorMessage && <p>{this.props.errorMessage}</p>}
-				<form onSubmit={this.props.handleAddEntry} className="addEntry">
-					<div className="addEntry__line">
+			<div>
+				<Select
+					value={activation}
+					placeholder="Activation level"
+					onChange={this.handleActivationChange}
+					options={setOptions('high normal low')}
+				/>
+				{activation !== null && (
+					<Select
+						value={affect}
+						placeholder="Kind of affect"
+						onChange={this.handleAffectChange}
+						options={
+							activation.value === 'normal'
+								? setOptions('positive negative')
+								: setOptions('positive neutral negative')
+						}
+					/>
+				)}
+				{activation !== null &&
+					affect !== null && (
 						<Select
-							name="activationLevel"
-							placeholder="Activation level"
-							value={activation}
-							onChange={this.handleActivationChange}
-							options={setOptions('high normal low')}
-						/>
-						<Select
-							name="AffectType"
-							placeholder="Kind of affect"
-							value={affect}
-							onChange={this.handleAffectChange}
-							options={
-								activation &&
-								(activation.value === 'normal'
-									? setOptions('positive negative')
-									: setOptions('positive neutral negative'))
-							}
-						/>
-						<Select
-							name="emotion"
 							placeholder="Feeling right now"
 							value={emotion}
 							onChange={this.handleEmotionChange}
-							options={
-								activation &&
-								affect &&
-								this.setEmotionOptions(activation.value, affect.value)
-							}
+							options={this.setEmotionOptions(activation.value, affect.value)}
 						/>
-					</div>
-					<div className="addEntry__line">
-						<input
-							name="trigger"
-							type="text"
-							className="addEntry__input"
-							placeholder="What did trigger that feeling?"
-							autoComplete="off"
-						/>
-					</div>
-					<div className="addEntry__line">
-						<input
-							type="submit"
-							className={
-								activation && affect && emotion
-									? 'button addEntry__button'
-									: 'button addEntry__button button--disabled'
-							}
-							disabled={activation && affect && emotion ? false : true}
-							value="Add Entry"
-						/>
-					</div>
-				</form>
+					)}
 			</div>
 		);
 	}
 }
-
-export default AddEntry;
+export default hot(module)(AddEntry);

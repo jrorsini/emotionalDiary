@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+import AddEntry from './exercice1/AddEntry';
 import { hot } from 'react-hot-loader';
 
 const setOptions = optionString =>
@@ -11,109 +11,13 @@ const setOptions = optionString =>
 class Exercice1 extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			inputs: {
-				activation: 'Activation level',
-				affect: 'Kind of affect',
-				emotion: 'Feeling right now'
-			},
-			activation: null,
-			affect: null,
-			emotion: null,
-			trigger: '',
-			entries: [],
-			triggers: [],
-			errorMessage: null
-		};
-		this.setEmotionOptions = this.setEmotionOptions.bind(this);
-		this.handleActivationChange = this.handleActivationChange.bind(this);
-		this.handleAffectChange = this.handleAffectChange.bind(this);
-		this.setEmotionOptions = this.setEmotionOptions.bind(this);
-	}
-
-	handleActivationChange(activation) {
-		this.setState({ activation });
-	}
-
-	handleAffectChange(affect) {
-		this.setState({ affect });
-	}
-
-	setEmotionOptions(activation, affect) {
-		const high_neutral = 'excited surprised rapt active';
-		const normal_neutral = 'happy delighted glad joyful hearty satisfied';
-		const normal_positive = 'happy delighted glad joyful hearty satisfied';
-		const high_positive =
-			'enthusiastic cheerful excited euphoric animated peppy';
-		const high_negative =
-			'jealous disgusted confused stressed angry frightened upset jittery concerned contradictory alarmed furious';
-
-		switch (activation) {
-			case 'high':
-				switch (affect) {
-					case 'positive':
-						return setOptions(high_positive);
-					case 'neutral':
-						return setOptions(high_neutral);
-					case 'negative':
-						return setOptions(high_negative);
-				}
-				break;
-			case 'normal':
-				switch (affect) {
-					case 'positive':
-						return setOptions(normal_positive);
-					case 'negative':
-						return setOptions(normal_neutral);
-				}
-				break;
-			case 'low':
-				switch (affect) {
-					case 'positive':
-						break;
-					case 'neutral':
-						break;
-					case 'negative':
-						break;
-				}
-				break;
-		}
 	}
 
 	render() {
-		const { activation, affect, emotion, trigger } = this.state;
-
 		return (
 			<div>
 				Select form goes here
-				<Select
-					value={activation}
-					placeholder="Activation level"
-					onChange={this.handleActivationChange}
-					options={setOptions('high normal low')}
-				/>
-				{activation !== null && (
-					<Select
-						name="AffectType"
-						placeholder="Kind of affect"
-						value={affect}
-						onChange={this.handleAffectChange}
-						options={
-							activation.value === 'normal'
-								? setOptions('positive negative')
-								: setOptions('positive neutral negative')
-						}
-					/>
-				)}
-				{activation &&
-					affect && (
-						<Select
-							name="emotion"
-							placeholder="Feeling right now"
-							value={emotion}
-							options={this.setEmotionOptions(activation.value, affect.value)}
-						/>
-					)}
+				<AddEntry />
 			</div>
 		);
 	}
