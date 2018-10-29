@@ -6,7 +6,7 @@
 	"author": "Jean-Roger <jeanroger.orsini@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "concurrently  \"nodemon index.js\" \"webpack-dev-server --hot\"  \"sudo mongod\""
+		"dev": "concurrently  \"nodemon index.js\" \"webpack-dev-server --hot\" "
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
@@ -28,6 +28,7 @@
 		"react-dom": "^16.4.2",
 		"react-hot-loader": "^4.0.0",
 		"react-redux": "^5.0.7",
+		"react-router": "^4.3.1",
 		"react-router-dom": "^4.3.1",
 		"redux": "^4.0.0",
 		"style-loader": "^0.23.1",
