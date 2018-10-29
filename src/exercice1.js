@@ -39,7 +39,7 @@ class Exercice1 extends Component {
 		Handle input saving and updates UI DOM.
 		Also checks wether all informations and filled out
 	 */
-	handleAddEntry = e => {
+	handleAddEntry(e) {
 		e.preventDefault();
 		const emotion = e.target.elements.emotion.value;
 		const trigger = e.target.elements.trigger.value;
@@ -53,17 +53,12 @@ class Exercice1 extends Component {
 				errorMessage: "Your entry doesn't have any trigger"
 			}));
 
-		this.setState(prevState => ({
-			entries: prevState.entries.concat({
-				emotion,
-				trigger
-			}),
+		this.setState(({ entries, triggers }) => ({
+			entries: entries.concat({ emotion, trigger }),
 			triggers:
-				prevState.triggers.indexOf(trigger) === -1
-					? prevState.triggers.concat(trigger)
-					: prevState.triggers
+				triggers.indexOf(trigger) === -1 ? triggers.concat(trigger) : triggers
 		}));
-	};
+	}
 
 	render() {
 		return (
