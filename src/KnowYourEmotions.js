@@ -4,6 +4,7 @@ import moment from 'moment';
 import { hot } from 'react-hot-loader';
 import styled from 'styled-components';
 import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-select/dist/react-select.css';
 import './HumanBodyStyle.css';
 import axios from 'axios';
 
