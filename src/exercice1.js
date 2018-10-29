@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import { hot } from 'react-hot-loader';
 
-const options = [
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' }
-];
-
 const setOptions = optionString =>
 	optionString.split(' ').map(option => ({
 		value: option,
@@ -32,6 +26,18 @@ class Exercice1 extends Component {
 			errorMessage: null
 		};
 		this.setEmotionOptions = this.setEmotionOptions.bind(this);
+		this.handleActivationChange = this.handleActivationChange.bind(this);
+	}
+
+	handleActivationChange(activation) {
+		this.setState(prevState => ({
+			...prevState,
+			activation: activation.value
+		}));
+	}
+
+	handleAffectChange(affect) {
+		this.setState({ affect: affect.value });
 	}
 
 	setEmotionOptions(activation, affect) {
@@ -82,11 +88,22 @@ class Exercice1 extends Component {
 			<div>
 				Select form goes here
 				<Select
-					name="activationLevel"
 					placeholder="Activation level"
+					onChange={this.handleActivationChange}
 					value={activation}
 					options={setOptions('high normal low')}
 				/>
+				{activation && (
+					<Select
+						placeholder="Kind of affect"
+						value={affect}
+						options={
+							activation === 'normal'
+								? setOptions('positive negative')
+								: setOptions('positive neutral negative')
+						}
+					/>
+				)}
 				{/* <Select
 					name="AffectType"
 					placeholder="Kind of affect"
