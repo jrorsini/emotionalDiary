@@ -1,6 +1,6 @@
-export default (state = {}, { type, load }) => {
+export default (state = null, { type, load }) => {
 	switch (type) {
-		case value:
+		case 'UPDATE_EMOTIONS':
 			return state;
 		default:
 			return state;
