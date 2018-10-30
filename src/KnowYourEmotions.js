@@ -60,6 +60,7 @@ class KnowYourEmotions extends Component {
 
 	submitHandler(e) {
 		e.preventDefault();
+		let alreadyThere = false;
 		const emotion = {
 			source: null,
 			date: null,
@@ -73,23 +74,24 @@ class KnowYourEmotions extends Component {
 			input.value = '';
 		}
 
-		this.setState(prevState => {
-			const emotions = prevState.emotions.concat([emotion]);
-			axios.post('/update_emotions/', emotions).then();
-			return { ...prevState, emotions };
+		this.state.emotions.map(e => {
+			if (e.source + '' + e.date === emotion.source + '' + emotion.date) {
+				alreadyThere = true;
+			}
 		});
+		alreadyThere &&
+			this.setState(prevState => {
+				const emotions = prevState.emotions.concat([emotion]);
+				axios.post('/update_emotions/', emotions).then();
+				return { ...prevState, emotions };
+			});
 	}
 
 	removeHandler(date, source) {
-		const removingFilter = e => {
-			if (e.source === source && e.date === date) {
-				return false;
-			} else {
-				return false;
-			}
-		};
 		this.setState(prevState => {
-			const emotions = prevState.emotions.filter(removingFilter);
+			const emotions = prevState.emotions.filter(
+				e => e.source + '' + e.date !== source + '' + date
+			);
 			axios.post('/update_emotions/', emotions).then();
 			return { ...prevState, emotions };
 		});
