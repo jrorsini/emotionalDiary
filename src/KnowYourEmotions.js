@@ -1,11 +1,11 @@
+import { fetchUser, updateEmotions } from './store/actions/user';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
+import axios from 'axios';
 import Form from './KnowYourEmotions/Form';
 import List from './KnowYourEmotions/List';
 import './HumanBodyStyle.css';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { fetchUser, updateEmotions } from './store/actions/user';
 
 class KnowYourEmotions extends Component {
 	constructor(props) {
