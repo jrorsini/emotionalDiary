@@ -4,7 +4,6 @@ import moment from 'moment';
 import { hot } from 'react-hot-loader';
 import styled from 'styled-components';
 import 'react-datepicker/dist/react-datepicker.css';
-import './HumanBodyStyle.css';
 import axios from 'axios';
 
 const Form = styled.form`
@@ -29,26 +28,27 @@ const Label = styled.label`
 	margin-bottom: 5px;
 `;
 
-const List = styled.ul`
-	display: inline-block;
-	width: 46%;
-	padding: 2%;
-	list-style: none;
-`;
-
-class Form extends Component {
+class KnowYourEmotions extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: moment(),
 			emotions: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
 	}
 
+	componentDidMount() {
+		axios.get('/emotions/').then(({ data }) => {
+			this.setState({
+				emotions: data.emotions
+			});
+		});
+	}
+
 	submitHandler(e) {
 		e.preventDefault();
+		let alreadyThere = false;
 		const emotion = {
 			source: null,
 			date: null,
@@ -59,16 +59,19 @@ class Form extends Component {
 		for (let i = 0; i < 5; i++) {
 			const input = e.target.elements[i];
 			emotion[input.name] = input.value;
+			input.value = '';
 		}
-
-		this.setState(prevState => ({
-			...prevState,
-			emotions: prevState.emotions.concat([emotion])
-		}));
-		axios
-			.post('/update_emotions/', emotion)
-			.then(({ data }) => console.log(data));
-		console.log(emotion);
+		this.state.emotions.map(e => {
+			if (e.source + '' + e.date === emotion.source + '' + emotion.date) {
+				alreadyThere = true;
+			}
+		});
+		!alreadyThere &&
+			this.setState(prevState => {
+				const emotions = prevState.emotions.concat([emotion]);
+				axios.post('/update_emotions/', emotions).then();
+				return { ...prevState, emotions };
+			});
 	}
 
 	handleChange(date) {
@@ -90,7 +93,7 @@ class Form extends Component {
 				<br />
 				<Label>When did they start?</Label>
 				<DatePicker
-					selected={this.state.startDate}
+					selected={moment()}
 					onChange={this.handleChange}
 					showTimeSelect
 					timeFormat="HH:mm"
@@ -123,4 +126,4 @@ class Form extends Component {
 	}
 }
 
-export default hot(module)(Form);
+export default hot(module)(KnowYourEmotions);
