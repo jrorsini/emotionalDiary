@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import styled from 'styled-components';
 import Form from './KnowYourEmotions/Form';
 import List from './KnowYourEmotions/List';
 import './HumanBodyStyle.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetchUser, updateEmotions } from './store/actions/user';
-
-const List = styled.ul`
-	display: inline-block;
-	width: 46%;
-	padding: 2%;
-	list-style: none;
-`;
 
 class KnowYourEmotions extends Component {
 	constructor(props) {
@@ -43,7 +35,7 @@ class KnowYourEmotions extends Component {
 			<div>
 				<p>know your emotions</p>
 				<Form />
-				{this.props.user !== null && <List />}
+				<List />
 			</div>
 		);
 	}
