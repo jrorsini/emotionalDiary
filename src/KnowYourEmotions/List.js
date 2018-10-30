@@ -28,28 +28,29 @@ class ListComponent extends Component {
 	editHandler(date) {}
 
 	render() {
-		console.log(this.props.user);
+		this.props.user && console.log(this.props.user);
 		return (
 			<List className="emotionLogList">
-				{this.props.user.emotions.map((e, i) => (
-					<li key={i}>
-						<b>{e.date}</b> - <br />
-						<span>
-							trigger: <b>{e.source}</b>
-						</span>
-						<br />
-						<span>
-							located in <b>{e.location}</b>, course - <b>{e.kind}</b>
-						</span>
-						<span>
-							Intensity - <b>{e.intensity}</b>
-						</span>
-						<button onClick={() => this.removeHandler(e.date, e.source)}>
-							remove
-						</button>
-						<button>edit</button>
-					</li>
-				))}
+				{this.props.user !== null &&
+					this.props.user.emotions.emotions.map((e, i) => (
+						<li key={i}>
+							<b>{e.date}</b> - <br />
+							<span>
+								trigger: <b>{e.source}</b>
+							</span>
+							<br />
+							<span>
+								located in <b>{e.location}</b>, course - <b>{e.kind}</b>
+							</span>
+							<span>
+								Intensity - <b>{e.intensity}</b>
+							</span>
+							<button onClick={() => this.removeHandler(e.date, e.source)}>
+								remove
+							</button>
+							<button>edit</button>
+						</li>
+					))}
 			</List>
 		);
 	}
