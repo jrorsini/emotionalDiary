@@ -32,7 +32,7 @@ class ListComponent extends Component {
 		return (
 			<List className="emotionLogList">
 				{this.props.user !== null &&
-					this.props.user.emotions.emotions.map((e, i) => (
+					this.props.user.emotions.map((e, i) => (
 						<li key={i}>
 							<b>{e.date}</b> - <br />
 							<span>
