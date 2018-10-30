@@ -5,6 +5,8 @@ import { hot } from 'react-hot-loader';
 import styled from 'styled-components';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchUser, updateEmotions } from '../store/actions/user';
 
 const Form = styled.form`
 	width: 46%;

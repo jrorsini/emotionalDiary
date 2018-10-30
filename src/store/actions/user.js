@@ -3,4 +3,7 @@ export const updateEmotions = load => ({
 	load
 });
 
-export const fetchUser = load => ({});
+export const fetchUser = load => ({
+	type: 'FETCH_USER',
+	load
+});
