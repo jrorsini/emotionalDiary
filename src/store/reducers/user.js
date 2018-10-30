@@ -3,7 +3,7 @@ export default (state = null, { type, load }) => {
 		case 'UPDATE_EMOTIONS':
 			return { ...state, emotions: load };
 		case 'FETCH_USER':
-			return state;
+			return load;
 		default:
 			return state;
 	}

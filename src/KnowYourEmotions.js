@@ -13,9 +13,10 @@ class KnowYourEmotions extends Component {
 	}
 
 	componentDidMount() {
-		axios
-			.get('/emotions/')
-			.then(({ data }) => this.props.dispatch(fetchUser(data)));
+		axios.get('/emotions/').then(({ data }) => {
+			this.props.dispatch(fetchUser(data));
+			console.log(data);
+		});
 	}
 
 	removeHandler(date, source) {
@@ -35,7 +36,7 @@ class KnowYourEmotions extends Component {
 			<div>
 				<p>know your emotions</p>
 				<Form />
-				<List />
+				{this.props.user !== null && <List />}
 			</div>
 		);
 	}
