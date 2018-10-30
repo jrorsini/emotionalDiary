@@ -70,6 +70,7 @@ class KnowYourEmotions extends Component {
 		for (let i = 0; i < 5; i++) {
 			const input = e.target.elements[i];
 			emotion[input.name] = input.value;
+			input.value = '';
 		}
 
 		this.setState(prevState => {
@@ -79,13 +80,22 @@ class KnowYourEmotions extends Component {
 		});
 	}
 
-	removeHandler(date) {
+	removeHandler(date, source) {
+		const removingFilter = e => {
+			if (e.source === source && e.date === date) {
+				return false;
+			} else {
+				return false;
+			}
+		};
 		this.setState(prevState => {
-			const emotions = prevState.emotions.filter(e => e.date !== date);
+			const emotions = prevState.emotions.filter(removingFilter);
 			axios.post('/update_emotions/', emotions).then();
 			return { ...prevState, emotions };
 		});
 	}
+
+	editHandler(date) {}
 
 	handleChange(date) {
 		console.log(date);
@@ -152,7 +162,7 @@ class KnowYourEmotions extends Component {
 								<span>
 									Intensity - <b>{e.intensity}</b>
 								</span>
-								<button onClick={() => this.removeHandler(e.date)}>
+								<button onClick={() => this.removeHandler(e.date, e.source)}>
 									remove
 								</button>
 								<button>edit</button>

@@ -35,34 +35,33 @@ class AddEntry extends Component {
 	}
 
 	setEmotionOptions(activation, affect) {
-		const emotionSet1 = 'excited surprised active rapt';
-		const emotionSet2 = 'astonished willing agitated';
-		const emotionSet3 = 'enthusiast cheerful excited euphoric animated peppy';
-		const emotionSet4 = 'amused proud sensitive';
-		const emotionSet5 = 'happy delighted glad joyful hearty satisfied';
-		const emotionSet6 = 'nostalgic modest cheerful';
-		const emotionSet7 = 'relaxed happy rested calm cheerful easy';
-		const emotionSet8 = 'shy serious sleepy';
-		const emotionSet9 = 'calm quiet inactive lazy passive';
-		const emotionSet10 = 'dazed bored listless';
-		const emotionSet11 = 'numb tired lethargic heavy distressed';
-		const emotionSet12 = 'ashamed disappointed';
-		const emotionSet13 = 'unhappy depressed sad sour dreary downcast';
-		const emotionSet14 = 'jealous disgusted confused';
-		const emotionSet15 = 'stressed angry frightened upset jittery conserned';
-		const emotionSet16 = 'contradictory alarmed furious';
+		const emSet1 = 'excited surprised active rapt';
+		const emSet2 = 'astonished willing agitated';
+		const emSet3 = 'enthusiast cheerful excited euphoric animated peppy';
+		const emSet4 = 'amused proud sensitive';
+		const emSet5 = 'happy delighted glad joyful hearty satisfied';
+		const emSet6 = 'nostalgic modest cheerful';
+		const emSet7 = 'relaxed happy rested calm cheerful easy';
+		const emSet8 = 'shy serious sleepy';
+		const emSet9 = 'calm quiet inactive lazy passive';
+		const emSet10 = 'dazed bored listless';
+		const emSet11 = 'numb tired lethargic heavy distressed';
+		const emSet12 = 'ashamed disappointed';
+		const emSet13 = 'unhappy depressed sad sour dreary downcast';
+		const emSet14 = 'jealous disgusted confused';
+		const emSet15 = 'stressed angry frightened upset jittery conserned';
+		const emSet16 = 'contradictory alarmed furious';
 
-		const high_negative =
-			emotionSet14 + ' ' + emotionSet15 + ' ' + emotionSet16;
-		const high_neutral = emotionSet16 + ' ' + emotionSet1 + ' ' + emotionSet2;
-		const high_positive = emotionSet2 + ' ' + emotionSet3 + ' ' + emotionSet4;
+		const high_positive = emSet2 + ' ' + emSet3 + ' ' + emSet4;
+		const high_neutral = emSet16 + ' ' + emSet1 + ' ' + emSet2;
+		const high_negative = emSet14 + ' ' + emSet15 + ' ' + emSet16;
 
-		const normal_neutral = '';
-		const normal_positive = '';
+		const normal_negative = emSet14 + ' ' + emSet13 + ' ' + emSet12;
+		const normal_positive = emSet4 + ' ' + emSet5 + ' ' + emSet6;
 
-		const low_negative = emotionSet10 + ' ' + emotionSet11 + ' ' + emotionSet12;
-		const low_neutral = emotionSet8 + ' ' + emotionSet9 + ' ' + emotionSet10;
-		const low_positive = emotionSet6 + ' ' + emotionSet7 + ' ' + emotionSet8;
+		const low_positive = emSet6 + ' ' + emSet7 + ' ' + emSet8;
+		const low_neutral = emSet8 + ' ' + emSet9 + ' ' + emSet10;
+		const low_negative = emSet10 + ' ' + emSet11 + ' ' + emSet12;
 
 		switch (activation) {
 			case 'high':
@@ -80,7 +79,7 @@ class AddEntry extends Component {
 					case 'positive':
 						return setOptions(normal_positive);
 					case 'negative':
-						return setOptions(normal_neutral);
+						return setOptions(normal_negative);
 				}
 				break;
 			case 'low':
@@ -103,13 +102,16 @@ class AddEntry extends Component {
 			<div>
 				<Select
 					value={activation}
+					name="activationLevel"
 					placeholder="Activation level"
 					onChange={this.handleActivationChange}
 					options={setOptions('high normal low')}
 				/>
+				<br />
 				{activation !== null && (
 					<Select
 						value={affect}
+						name="AffectType"
 						placeholder="Kind of affect"
 						onChange={this.handleAffectChange}
 						options={
@@ -119,11 +121,13 @@ class AddEntry extends Component {
 						}
 					/>
 				)}
+				<br />
 				{activation !== null &&
 					affect !== null && (
 						<Select
-							placeholder="Feeling right now"
 							value={emotion}
+							name="emotion"
+							placeholder="Feeling right now"
 							onChange={this.handleEmotionChange}
 							options={this.setEmotionOptions(activation.value, affect.value)}
 						/>
