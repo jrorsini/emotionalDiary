@@ -16,8 +16,21 @@ class Exercice1 extends Component {
 	render() {
 		return (
 			<div>
-				Select form goes here
+				Select one or 2 feelings
 				<AddEntry />
+				<h3>1. Take some time to get familiar with all these emotions</h3>
+				<h3>
+					2. Describe this feeling. The best way to do this is say it aloud.
+				</h3>
+				<p>Different ways to do that:</p>
+				<ul>
+					<li>Using a metaphor, e.g. "The fear I feel is like a ...";</li>
+					<li>Telling a simple story about this feeling;</li>
+					<li>
+						Describing mental and phisical sensations connected with that state
+						of mind.
+					</li>
+				</ul>
 			</div>
 		);
 	}
