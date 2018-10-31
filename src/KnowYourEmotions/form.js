@@ -34,8 +34,7 @@ class FormComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: moment(),
-			emotions: []
+			startDate: moment()
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
@@ -43,6 +42,7 @@ class FormComponent extends Component {
 
 	submitHandler(e) {
 		e.preventDefault();
+		const { emotions } = this.props.user;
 		let alreadyThere = false;
 		const emotion = {
 			source: null,
@@ -56,17 +56,16 @@ class FormComponent extends Component {
 			emotion[input.name] = input.value;
 			input.value = '';
 		}
-		this.state.emotions.map(e => {
+
+		emotions.map(e => {
 			if (e.source + '' + e.date === emotion.source + '' + emotion.date) {
 				alreadyThere = true;
 			}
 		});
-		!alreadyThere &&
-			this.setState(prevState => {
-				const emotions = prevState.emotions.concat([emotion]);
-				axios.post('/update_emotions/', emotions).then();
-				return { ...prevState, emotions };
-			});
+		if (!alreadyThere) {
+			this.props.dispatch(updateEmotions(emotions.concat([emotion])));
+			axios.post('/update_emotions/', emotions.concat([emotion]));
+		}
 	}
 
 	handleChange(date) {
@@ -85,8 +84,8 @@ class FormComponent extends Component {
 				<br />
 				<Label>When did they start?</Label>
 				<DatePicker
-					selected={t}
-					onChange={this.state.startDate}
+					selected={this.state.startDate}
+					onChange={this.handleChange}
 					showTimeSelect
 					timeFormat="HH:mm"
 					timeIntervals={15}
