@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import AddEntry from './exercice1/AddEntry';
 import { hot } from 'react-hot-loader';
 
-class Exercice1 extends Component {
+class Exercice5 extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -11,7 +10,6 @@ class Exercice1 extends Component {
 		return (
 			<div>
 				Select one or 2 feelings
-				<AddEntry />
 				<h3>1. Take some time to get familiar with all these emotions.</h3>
 				<h3>
 					2. Sit comfortably, close your eyes and bring this feeling back.
@@ -36,4 +34,4 @@ class Exercice1 extends Component {
 		);
 	}
 }
-export default hot(module)(Exercice1);
+export default hot(module)(Exercice5);
