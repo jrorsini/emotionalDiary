@@ -18,9 +18,12 @@ class Exercice1 extends Component {
 			<div>
 				Select one or 2 feelings
 				<AddEntry />
-				<h3>1. Take some time to get familiar with all these emotions</h3>
+				<h3>1. Take some time to get familiar with all these emotions.</h3>
 				<h3>
-					2. Describe this feeling. The best way to do this is say it aloud.
+					2. Sit comfortably, close your eyes and bring this feeling back.
+				</h3>
+				<h3>
+					3. Describe this feeling. The best way to do this is say it aloud.
 				</h3>
 				<p>Different ways to do that:</p>
 				<ul>
@@ -31,6 +34,10 @@ class Exercice1 extends Component {
 						of mind.
 					</li>
 				</ul>
+				<h3>
+					4. Examine how you feel after describing this emotion. Did the deeper
+					understanding change the way you feel the emotion?
+				</h3>
 			</div>
 		);
 	}
