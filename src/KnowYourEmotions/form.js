@@ -30,22 +30,15 @@ const Label = styled.label`
 	margin-bottom: 5px;
 `;
 
-class KnowYourEmotions extends Component {
+class FormComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			startDate: moment(),
 			emotions: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.submitHandler = this.submitHandler.bind(this);
-	}
-
-	componentDidMount() {
-		axios.get('/emotions/').then(({ data }) => {
-			this.setState({
-				emotions: data.emotions
-			});
-		});
 	}
 
 	submitHandler(e) {
@@ -77,10 +70,7 @@ class KnowYourEmotions extends Component {
 	}
 
 	handleChange(date) {
-		console.log(date);
-		this.setState({
-			startDate: date
-		});
+		this.setState({ startDate: date });
 	}
 
 	render() {
@@ -95,8 +85,8 @@ class KnowYourEmotions extends Component {
 				<br />
 				<Label>When did they start?</Label>
 				<DatePicker
-					selected={moment()}
-					onChange={this.handleChange}
+					selected={t}
+					onChange={this.state.startDate}
 					showTimeSelect
 					timeFormat="HH:mm"
 					timeIntervals={15}
@@ -128,4 +118,6 @@ class KnowYourEmotions extends Component {
 	}
 }
 
-export default hot(module)(KnowYourEmotions);
+const mapStateToProps = state => state;
+
+export default hot(module)(connect(mapStateToProps)(FormComponent));
