@@ -35,6 +35,16 @@ app.post('/update_emotions/', ({ body }, res) =>
 	)
 );
 
+app.post('/update_important_people/', ({ body }, res) =>
+	Users.findOneAndUpdate(
+		{ email: 'test@test.com' },
+		{ importantPeople: body }
+	).then(importantPeople => {
+		console.log(importantPeople);
+		res.send('Your felt emotion has been saved.');
+	})
+);
+
 app.get('/emotions/', (req, res) => {
 	Users.findOne({ email: 'test@test.com' }).then(user => res.send(user));
 });

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import { updateImportantPeople } from './store/actions/user';
+import axios from 'axios';
 
 class Exercice5 extends Component {
 	constructor(props) {
@@ -11,17 +12,34 @@ class Exercice5 extends Component {
 
 	submitHandler(e) {
 		e.preventDefault();
-		const { name, type } = e.target.elements;
+		let alreadyThere = false;
+		const { dispatch } = this.props;
 		const { importantPeople } = this.props.user;
+		const { name, type } = e.target.elements;
 		const importantPeopleObject = {
 			name: name.value,
 			type: type.value
 		};
 
-		this.props.dispatch(
-			updateImportantPeople(importantPeople.concat([importantPeopleObject]))
-		);
 		name.value = '';
+
+		importantPeople.map(e => {
+			if (
+				e.name + '' + e.type ===
+				importantPeopleObject.name + '' + importantPeopleObject.type
+			) {
+				alreadyThere = true;
+			}
+		});
+		if (!alreadyThere) {
+			dispatch(
+				updateImportantPeople(importantPeople.concat([importantPeopleObject]))
+			);
+			axios.post(
+				'/update_important_people/',
+				importantPeople.concat([importantPeopleObject])
+			);
+		}
 	}
 
 	render() {
