@@ -11,13 +11,13 @@ class Exercice5 extends Component {
 			<div>
 				<p>Add the most important people to your life.</p>
 				<form>
+					<input type="text" placeholder="Person's name" />
 					<select name="" id="">
-						<input type="text" placeholder="Person's name" />
 						<option value="">life</option>
 						<option value="">work</option>
 						<option value="">family</option>
-						<input type="submit" value="Add" />
 					</select>
+					<input type="submit" value="Add" />
 				</form>
 				<ul>
 					<li>mother's name</li>
