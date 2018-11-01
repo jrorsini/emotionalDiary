@@ -8,6 +8,7 @@ class Exercice5 extends Component {
 	constructor(props) {
 		super(props);
 		this.submitHandler = this.submitHandler.bind(this);
+		this.removeHandler = this.removeHandler.bind(this);
 	}
 
 	submitHandler(e) {
@@ -42,6 +43,14 @@ class Exercice5 extends Component {
 		}
 	}
 
+	removeHandler(name, type) {
+		const importantPeople = this.props.user.importantPeople.filter(
+			e => e.type + '' + e.name !== type + '' + name
+		);
+		this.props.dispatch(updateImportantPeople(importantPeople));
+		axios.post('/update_important_people/', importantPeople);
+	}
+
 	render() {
 		const { user } = this.props;
 		return (
@@ -63,7 +72,9 @@ class Exercice5 extends Component {
 							<li key={i}>
 								{e.name} <b>{e.type}</b>
 								<button>edit</button>
-								<button>remove</button>
+								<button onClick={() => this.removeHandler(e.name, e.type)}>
+									remove
+								</button>
 							</li>
 						))}
 				</ul>
