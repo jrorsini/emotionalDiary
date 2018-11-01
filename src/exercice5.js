@@ -7,13 +7,18 @@ class Exercice5 extends Component {
 		super(props);
 	}
 
+	submitHandler(e) {
+		console.log(e.target.elements.name);
+		console.log(e.target.elements.type);
+	}
+
 	render() {
 		return (
 			<div>
 				<p>Add the most important people to your life.</p>
 				<form>
-					<input type="text" placeholder="Person's name" />
-					<select name="" id="">
+					<input type="text" name="name" placeholder="Person's name" />
+					<select name="type" id="">
 						<option value="">life</option>
 						<option value="">work</option>
 						<option value="">family</option>
@@ -38,4 +43,6 @@ class Exercice5 extends Component {
 		);
 	}
 }
-export default hot(module)(Exercice5);
+
+const mapStateToProps = state => state;
+export default hot(module)(connect(mapStateToProps)(Exercice5));
