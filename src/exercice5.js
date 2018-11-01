@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 
 class Exercice5 extends Component {
 	constructor(props) {

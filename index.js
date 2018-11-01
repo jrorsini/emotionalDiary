@@ -20,7 +20,11 @@ mongoose
 	.then(() => console.log('connected'))
 	.catch(err => console.log(err));
 
-const Users = mongoose.model('users', { email: String, emotions: Array });
+const Users = mongoose.model('users', {
+	email: String,
+	emotions: Array,
+	importantPeople: Array
+});
 
 app.post('/update_emotions/', ({ body }, res) =>
 	Users.findOneAndUpdate({ email: 'test@test.com' }, { emotions: body }).then(
