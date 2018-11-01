@@ -17,13 +17,15 @@ class Exercice5 extends Component {
 			name: name.value,
 			type: type.value
 		};
+
 		this.props.dispatch(
 			updateImportantPeople(importantPeople.concat([importantPeopleObject]))
 		);
+		name.value = '';
 	}
 
 	render() {
-		const { importantPeople } = this.props.user;
+		const { user } = this.props;
 		return (
 			<div>
 				<p>Add the most important people to your life.</p>
@@ -37,10 +39,13 @@ class Exercice5 extends Component {
 					<input type="submit" value="Add" />
 				</form>
 				<ul>
-					{importantPeople.length !== 0 &&
-						importantPeople.map((e, i) => (
+					{user &&
+						user.importantPeople.length !== 0 &&
+						user.importantPeople.map((e, i) => (
 							<li key={i}>
 								{e.name} <b>{e.type}</b>
+								<button>edit</button>
+								<button>remove</button>
 							</li>
 						))}
 				</ul>
