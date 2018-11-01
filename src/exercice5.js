@@ -70,11 +70,11 @@ class Exercice5 extends Component {
 						user.importantPeople.length !== 0 &&
 						user.importantPeople.map((e, i) => (
 							<li key={i}>
-								{e.name} <b>{e.type}</b>
-								<button>edit</button>
 								<button onClick={() => this.removeHandler(e.name, e.type)}>
 									remove
 								</button>
+								<button>edit</button>
+								<b>{e.type}</b> - {e.name}
 							</li>
 						))}
 				</ul>
