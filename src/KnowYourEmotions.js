@@ -1,4 +1,4 @@
-import { fetchUser, updateEmotions } from './store/actions/user';
+import { updateEmotions } from './store/actions/user';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
@@ -10,13 +10,6 @@ import './HumanBodyStyle.css';
 class KnowYourEmotions extends Component {
 	constructor(props) {
 		super(props);
-	}
-
-	componentDidMount() {
-		axios.get('/emotions/').then(({ data }) => {
-			this.props.dispatch(fetchUser(data));
-			console.log(data);
-		});
 	}
 
 	removeHandler(date, source) {

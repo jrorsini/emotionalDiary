@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
+import { updateImportantPeople } from './store/actions/user';
 
 class Exercice5 extends Component {
 	constructor(props) {
 		super(props);
+		this.submitHandler = this.submitHandler.bind(this);
 	}
 
 	submitHandler(e) {
-		console.log(e.target.elements.name);
-		console.log(e.target.elements.type);
+		e.preventDefault();
+		const { name, type } = e.target.elements;
+		const { importantPeople } = this.props.user;
+		const importantPeopleObject = {
+			name: name.value,
+			type: type.value
+		};
+		this.props.dispatch(
+			updateImportantPeople(importantPeople.concat([importantPeopleObject]))
+		);
 	}
 
 	render() {
 		return (
 			<div>
 				<p>Add the most important people to your life.</p>
-				<form>
+				<form onSubmit={this.submitHandler}>
 					<input type="text" name="name" placeholder="Person's name" />
 					<select name="type" id="">
-						<option value="">life</option>
-						<option value="">work</option>
-						<option value="">family</option>
+						<option value="life">life</option>
+						<option value="work">work</option>
+						<option value="family">family</option>
 					</select>
 					<input type="submit" value="Add" />
 				</form>
 				<ul>
-					<li>mother's name</li>
-					<li>father's name</li>
+					{this.props.user.importantPeople.map((e, i) => (
+						<li key={i}>
+							{e.name} <b>{e.type}</b>
+						</li>
+					))}
 				</ul>
 
 				<p>
@@ -45,4 +58,5 @@ class Exercice5 extends Component {
 }
 
 const mapStateToProps = state => state;
+
 export default hot(module)(connect(mapStateToProps)(Exercice5));
